@@ -5,7 +5,7 @@ from httpx_oauth.clients.google import GoogleOAuth2
 from dotenv import load_dotenv
 load_dotenv()
 
-st.set_page_config(layout="wide")
+st.set_page_config(page_title = "SignUp", page_icon = "✍️", layout="wide")
 
 def initialize_session_state():
     if "user_id" not in st.session_state:
@@ -41,7 +41,7 @@ async def get_email(client, token):
 if client and st.session_state["authenticated"] == False:
     authorization_url = asyncio.run(get_authorization_url(client, redirect_uri))
     try:
-        code = st.experimental_get_query_params()["code"]
+        code = st.query_params()["code"]
     except:
         col1, col2, col3, col4, col5, col6, col7 = st.columns(7)
         with col7:
